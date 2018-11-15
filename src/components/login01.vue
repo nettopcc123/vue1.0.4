@@ -1,34 +1,17 @@
 <template>
 <div id="feedback">
-  <h2 class="uitit_a">意见反馈</h2>
+<h2 class="uitit_a">帐号登入</h2>
 <div class="conttext">
-        <div class="bt">
-        		<strong>请您留言</strong>
-        		</div>
-        <p>
-            感谢您对竞彩足球的支持！<br>
-            您反馈的问题有结果后我们会第一时间给您回复。
-        </p>
-          <input type="hidden" name="boardid" value="109">
-        <input type="hidden" name="uid" value="">
-        <input type="hidden" name="referer" value="http%3A%2F%2Flives.sina.cn%2Flive%2Flive%3Fvt%3D4%26match_id%3Dl_314">
-        <div class="ly_box">
-        <p class="footbk_p"><strong class="footfk">反馈内容：</strong></p>
-				<p>
-            <textarea v-bind:maxlength="140" @input="descArea" v-model="introduct" name="abstract" id="abstract" placeholder="您的意见，会让我们更优秀。" class="ftext"></textarea>
-             <span class="num-desc">您还可以输入 {{Surplus}} 个字符 / 共 140 个字符</span>
-        </p>
-      <input type="hidden" name="needcheck[]" value="msg1 反馈内容：">
-      <p class="footbk_p"><strong class="footfk">联系电话：</strong></p>
-			<p><input type="text" class="inputtext" name="msg2" id="msg2" value="" alt=""></p>
-            <input type="hidden" name="needcheck[]" value="msg2 联系电话：">
-      <p class="footbk_p"><strong class="footfk">您的邮箱或者微博：</strong></p>
-			<p><input type="text" class="inputtext" name="msg3" id="msg3" value="" alt=""></p>
-            <input type="hidden" name="needcheck[]" value="msg3 您的邮箱或者微博：">
-        </div>
-      </div>
-  <button class="fbut" @click="isloadshow()">提交</button>
- </div> 
+    <div class="ly_box">
+        <p class="footbk_p"><strong class="footfk">用户名：</strong></p>
+        <p><input type="text" class="inputtext" name="msp1" id="msp1" value="" alt="" v-model="msp1"></p>
+        <p class="footbk_p"><strong class="footfk">登入密码：</strong></p>
+        <p><input type="password" class="inputtext" name="msp2" id="msp2" value="" alt="" v-model="msp2"></p>
+    </div>
+    </div>
+  <button class="fbut" @click='fetchDatas(msp1,msp2)'>确认登入</button>
+  <button class="fbutreg" @click='goreg()'>注册</button>
+ </div>
  </template>
 <script>
 import Vue from 'vue';
@@ -39,23 +22,53 @@ export default {
   data(){
     return{
       Surplus:140,
-      introduct:''
+      introduct:'',
+      msp1:'',
+      msp2:'',
     }
+  },
+  created(){
+    this.$nextTick(() => {
+        return this.$store.state.isuser;
+    })
   },
   methods:{
     descArea(){
       var textVal = this.introduct.length;
       this.Surplus = 140 - textVal;
     },
-    isloadshow() {
-      this.$store.commit('isloadshow');
-      setTimeout(() => {
-        this.isloadhid();
-      },2000)
+    fetchDatas: async function (userName,pwd) {
+      let params = {
+        "userName":userName, 
+        "pwd":pwd
+      };
+      let url = 'http://154.48.238.35:8085/UserService.svc/Login';
+      let callback = response => {
+        if(response.data.d != null){
+          this.isloadhidS();
+        }else{
+          this.isloadhidF();
+        }
+      };
+      await this.http.post(url,callback,params);
     },
-    isloadhid() {
+    goreg(){
+      this.$router.push({path:'/register'});
+    },
+    isloadhidF() {
+      this.$store.commit('isuserhid');
       this.$store.commit('isloadhid');
-      this.$toast.center('提交成功');
+      this.$toast.center('登入失败请重新登入');
+      this.$store.commit('isusnamh',{name:''});
+      localStorage.setItem('u','未登入')
+    },
+    isloadhidS() {
+      this.$store.commit('isusershow'); //用户状态
+      this.$store.commit('isloadhid');
+      this.$store.commit('isusnamh',{name:this.msp1});
+      localStorage.setItem('u',this.msp1)
+      this.$router.push({path:'/member'});
+      this.$toast.center('登入成功');
     }
   }
 }
@@ -84,7 +97,8 @@ export default {
   margin: 0rem auto;
 }
 .fbut{
-  width: 94%
+  width: 94%;
+  margin-top:0.15rem;
 }
 .num-desc{
   display: block;
@@ -135,7 +149,7 @@ export default {
 }
 .ly_box strong {
     font-weight: normal;
-    font-size: 16px;
+    font-size: 0.14rem;
 }
 .inputtext {
     border: 1px solid #d0d0d0;
@@ -151,7 +165,7 @@ export default {
     float: left;
     color: #333;
     font-weight: normal;
-    font-size: 16px;
+    font-size: 0.12rem;
     text-align: center;
     color: #4d4e50;
     display: block;
@@ -163,5 +177,12 @@ export default {
   clear:both;
   overflow:hidden;
   margin-top:0.1rem;
+}
+.fbutreg{
+    width: 94%;
+    margin-top:0.15rem;
+    color: #fff;
+    background-color: #b37e59;
+    border-color: #9a6c4d;
 }
 </style>

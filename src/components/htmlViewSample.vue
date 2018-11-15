@@ -11,7 +11,7 @@
     export default {
         data() {
             return {
-                bdTokenUrl: 'http://m.zhibo8.cc/' //https://m.sporttery.cn/app/zf/fb/livelist.html  https://m.sporttery.cn/app/zf/fb/livelist.html http://www.yidianzixun.com/#/?id=c2&name=%E4%BD%93%E8%82%B2
+                bdTokenUrl: 'http://tiyu.baidu.com/live' //https://m.sporttery.cn/app/zf/fb/livelist.html  https://m.sporttery.cn/app/zf/fb/livelist.html http://www.yidianzixun.com/#/?id=c2&name=%E4%BD%93%E8%82%B2
             }
         },
         // created() {
@@ -40,6 +40,6 @@
 }
 .iftop{
     height: 100%;
-    margin-top:-88px;
+    margin-top:-80px;
 }
 </style>

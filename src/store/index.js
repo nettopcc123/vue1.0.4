@@ -11,7 +11,8 @@ const store = new Vuex.Store({
     isload:false,
     isalert:false,
     ismenu:false,
-    isuser:false  //判断用户是否登入
+    isuser:false,  //判断用户是否登入
+    usnam:{}  //判断用户是否登入
  },
  mutations: {
    isloadhid(state){
@@ -37,6 +38,9 @@ const store = new Vuex.Store({
    },
    isuserhid(state){
     state.isuser = false;
+   },
+   isusnamh(state,usna){
+    state.isuser = usna;
    },
 }
 });

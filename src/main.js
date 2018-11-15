@@ -61,6 +61,9 @@ new Vue({
   created() {
      this.$nextTick(()=>{
         this.bdTokenUrl = this.$route.params.url;
+        if (!store.state.isuser) {  // 通过vuex state获取当前的token是否存在   if (store.state.token) {
+            localStorage.setItem('u','未登入')
+        }
     });
 },
 })
@@ -119,22 +122,25 @@ Vue.use(Toast, {
 //判断用户是否登入
 router.beforeEach((to, from, next) => {
     if (to.meta.requireAuth) {  // 判断该路由是否需要登录权限
-        console.log('a0' + store.state.isuser + store.state.isload )
         if (store.state.isuser) {  // 通过vuex state获取当前的token是否存在   if (store.state.token) {
-            console.log('a1')
             next();
         }
         else {
-            console.log('a2')
             next({
                 path: '/login',
                 query: {redirect: to.fullPath}  // 将跳转的路由path作为参数，登录成功后跳转到该路由
-            })
+            });
+            localStorage.setItem('u','未登入')
+            store.commit('ismenuhid');
         }
     }
     else {
-        console.log('a3')
-        console.log('bbb')
-        next();
+        if (store.state.isuser) {  // 通过vuex state获取当前的token是否存在   if (store.state.token) {
+            next();
+        }
+        else {
+            localStorage.setItem('u','未登入')
+            next();
+        }
     }
 })

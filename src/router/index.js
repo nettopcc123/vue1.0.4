@@ -12,7 +12,7 @@ import Router from 'vue-router'
 // import favorites from '@/components/favorites'
 
 //路由懶加载
-const Index = r => require.ensure([],() => r(require('@/components/Index5')), 'Index');
+const Index = r => require.ensure([],() => r(require('@/components/Index6')), 'Index');
 const Index1 = r => require.ensure([],() => r(require('@/components/Index1')), 'Index1');
 const news = r => require.ensure([],() => r(require('@/components/news')), 'news');
 const newlists = r => require.ensure([],() => r(require('@/components/newlists.vue')), 'newlists');
@@ -35,8 +35,8 @@ const marquee = r => require.ensure([],() => r(require('@/components/marquee')),
 const framePict = r => require.ensure([],() => r(require('@/components/framePict')), 'framePict');
 const frameNew = r => require.ensure([],() => r(require('@/components/frameNew')), 'frameNew');
 const framekj = r => require.ensure([],() => r(require('@/components/framekj')), 'framekj');
-const register = r => require.ensure([],() => r(require('@/components/register')), 'register');
-const login = r => require.ensure([],() => r(require('@/components/login')), 'login');
+const register = r => require.ensure([],() => r(require('@/components/register01')), 'register');
+const login = r => require.ensure([],() => r(require('@/components/login01')), 'login');
 const member = r => require.ensure([],() => r(require('@/components/member')), 'member');
 const vip = r => require.ensure([],() => r(require('@/components/vip')), 'vip');
 const liberty = r => require.ensure([],() => r(require('@/components/liberty')), 'liberty');
@@ -81,7 +81,7 @@ export default new Router({
       name: 'member',
       component: member,
       meta: {
-        requireAuth: true,  // 添加该字段，表示进入这个路由是需要登录的
+        requireAuth: false,  // 添加该字段，表示进入这个路由是需要登录的
       }
     },
     {
@@ -138,7 +138,10 @@ export default new Router({
     {
       path: '/vip',
       name: 'vip',
-      component: vip
+      component: vip,
+      meta: {
+        requireAuth: true,  // 添加该字段，表示进入这个路由是需要登录的
+      }
     },
     {
       path: '/news',
@@ -210,19 +213,31 @@ export default new Router({
     },{
       path:'/message',
       name:'message',
-      component:message
+      component:message,
+      meta: {
+        requireAuth: true,  // 添加该字段，表示进入这个路由是需要登录的
+      }
     },{
       path:'/favorites',
       name:'favorites',
-      component:favorites
+      component:favorites,
+      meta: {
+        requireAuth: true,  // 添加该字段，表示进入这个路由是需要登录的
+      }
     },{
       path:'/fans',
       name:'fans',
-      component:fans
+      component:fans,
+      meta: {
+        requireAuth: true,  // 添加该字段，表示进入这个路由是需要登录的
+      }
     },{
       path:'/follow',
       name:'follow',
-      component:follow
+      component:follow,
+      meta: {
+        requireAuth: true,  // 添加该字段，表示进入这个路由是需要登录的
+      }
     }
     ,{
       path:'/',

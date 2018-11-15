@@ -50,8 +50,8 @@
 import axios from 'axios';
 import loading from '@/components/loading';
 import alert from '@/components/alert';
-import header from '@/components/header';
-import footer from '@/components/footer04';
+import header from '@/components/header02';
+import footer from '@/components/footer05';
 
 
 export default {
@@ -190,7 +190,7 @@ html {
 }
 body{
     height:100%;
-    background:#eaeaea;
+    background:#fff;
     overflow-x: hidden;
 }
 
@@ -308,16 +308,16 @@ button{
     background-color: #fff;
     border-color: #dcdee2; */
     color: #fff;
-    background-color: #8781a5;
-    border-color: #736b96
+    background-color: #f7ae7b;
+    border-color: #dd9c6f
 }
 @font-face {
   font-family: 'iconfont';  /* project id 880675 */
-  src: url('//at.alicdn.com/t/font_880675_40d6e69mymj.eot');
-  src: url('//at.alicdn.com/t/font_880675_40d6e69mymj.eot?#iefix') format('embedded-opentype'),
-  url('//at.alicdn.com/t/font_880675_40d6e69mymj.woff') format('woff'),
-  url('//at.alicdn.com/t/font_880675_40d6e69mymj.ttf') format('truetype'),
-  url('//at.alicdn.com/t/font_880675_40d6e69mymj.svg#iconfont') format('svg');
+  src: url('//at.alicdn.com/t/font_880675_7jnkgvxu4wj.eot');
+  src: url('//at.alicdn.com/t/font_880675_7jnkgvxu4wj.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_880675_7jnkgvxu4wj.woff') format('woff'),
+  url('//at.alicdn.com/t/font_880675_7jnkgvxu4wj.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_880675_7jnkgvxu4wj.svg#iconfont') format('svg');
 }
 .iconfont {
     font-family: "iconfont" !important;
@@ -421,6 +421,12 @@ button{
 }
 .icon-clean:before {
     content: "\e609";
+}
+.icon-pros:before {
+    content: "\e67c";
+}
+.icon-bell:before {
+    content: "\e610";
 }
 .fico{
     display: block;

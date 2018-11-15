@@ -5,16 +5,16 @@
           <img :src="require('./../components/img/user.png?1111')" alt="" class="userimg">
           <p class="usename">{{ username }}</p>
           <p class="uvip">{{ uvip }}</p>
-          <ul class="uslis">
+          <!-- <ul class="uslis">
               <li><router-link :to="{name:'favorites'}" class="userouter"><i class="iconfont icon-favorite"></i><span>收藏</span></router-link></li>
               <li><router-link :to="{name:'follow'}" class="userouter"><i class="iconfont icon-follow"></i><span>关注</span></router-link></li>
               <li><router-link :to="{name:'fans'}" class="userouter"><i class="iconfont icon-fans"></i><span>粉丝</span></router-link></li>
-          </ul>
+          </ul> -->
       </div>
       <ul class="uselis">
          <li><router-link :to="{name:'feedback'}" class="userouter"><i class="iconfont icon-feedback01 meicl"></i>意见反馈<i class="iconfont icon-next01 usenext"></i></router-link></li>
-         <li><router-link :to="{name:'vip'}" class="userouter"><i class="iconfont icon-member meicl"></i>会员俱乐部<i class="iconfont icon-next01 usenext"></i></router-link></li>
-         <li><router-link :to="{name:'shoper'}" class="userouter"><i class="iconfont icon-shopping meicl"></i>积分商城<i class="iconfont icon-next01 usenext"></i></router-link></li>
+         <!-- <li><router-link :to="{name:'vip'}" class="userouter"><i class="iconfont icon-member meicl"></i>会员俱乐部<i class="iconfont icon-next01 usenext"></i></router-link></li>
+         <li><router-link :to="{name:'shoper'}" class="userouter"><i class="iconfont icon-shopping meicl"></i>积分商城<i class="iconfont icon-next01 usenext"></i></router-link></li> -->
          <li><router-link :to="{name:'disclaimer'}" class="userouter"><i class="iconfont icon-statement meicl"></i>免责声明<i class="iconfont icon-next01 usenext"></i></router-link></li>
          <li><router-link :to="{name:'message'}" class="userouter"><i class="iconfont icon-notice meicl"></i>站内通知<i class="iconfont icon-next01 usenext"></i></router-link></li>
          <li><router-link :to="{name:'favorites'}" class="userouter"><i class="iconfont icon-collection meicl"></i>我的收藏<i class="iconfont icon-next01 usenext"></i></router-link></li>
@@ -72,7 +72,8 @@ export default {
         this.$store.commit('isloadhid');
       },
       getUserName() {
-        this.username = localStorage.getItem('u');
+        this.username= localStorage.getItem('u');
+        //this.username= this.$store.state.usnam.name; 
       }
   }
 }
@@ -92,12 +93,13 @@ export default {
     height: 0.46rem;
 }
 .uwb{
-    background:rgba(255,255,255,0.5);
+    background: url('img/mbg.jpg') center top no-repeat;
     border-radius: 0.05rem;
     width: 82%;
     padding: 0.15rem;
     margin:0.4rem auto 0.1rem;
     position: relative;
+    background-size:100%; 
 }
 .usename{
     padding:0.2rem 0px 0.05rem;
@@ -118,7 +120,7 @@ export default {
   margin-bottom:0.05rem;
   text-align: left;
   padding:0 0.05rem;
-  border-bottom: 0.01rem double #fff;
+  border-bottom: 0.01rem double #ffefde;
   font-size: 0.16rem;
   color:#5b5b5b;
 }
