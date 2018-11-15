@@ -2,12 +2,12 @@
 <div class="header">
     <div class="heaw">
         <div class="fl"><router-link :to="{ name: 'member'}"><i class="iconfont icon-pros zsm mlin"></i></router-link></div>
-        <div class="fm">竞彩足球</div>
+        <div class="fm">重庆时时彩</div>
         <span class="menur" @click="ismenushow"><i class="iconfont icon-bell zsm mlin"></i></span>
     </div>
-    <div class="menuleft" style="position:restive" v-show="ismenu">
+    <div class="menuleft" style="position:restive" v-show="ismenu" v-bind:class="show?'active':''">
         <div class="uid">
-            <img :src="require('./../components/img/uid01.png?1111')" alt="">
+            <img :src="require('./../components/img/user.png?1111')" alt="">
             <p class="usnam">{{ username }}</p>
         </div>
         <ul class="menuul">
@@ -28,6 +28,7 @@ export default {
     return {
       newList:[],
       username:'登入/注册',
+      show:false
     }
   },
   computed:{
@@ -42,8 +43,10 @@ export default {
                 this.ispros = true;
                 this.isclose = false;
                 this.$store.commit('ismenuhid');
+                this.show = false
             }else{
                 this.$store.commit('ismenushow');
+                this.show = true;
                 console.log('ab2')
                 if(this.$store.state.isuser == true){
                     console.log('ab3')
@@ -57,6 +60,9 @@ export default {
           ismenuhid() {
             this.$store.commit('ismenuhid');
             console.log('b1')
+          },
+          anime () {
+            this.class = 'slide-edit-box-anime'
           }
   }
 }
@@ -135,15 +141,7 @@ export default {
     right:0px;
     top:0px;
 }
-.menuleft{
-    position: fixed;
-    top:6%;
-    left:0;
-    height:380px;
-    background:#fff;
-    width: 100%;
-    z-index: 100;
-}
+
 .menufont{
     padding-left:0.15rem;
 }
@@ -186,5 +184,26 @@ export default {
     width: 100%;
     display: block;
     text-align: center;
+}
+.menuleft{
+    position: fixed;
+    top:6%;
+    left:0;
+    height:380px;
+    background:#fff;
+    width: 100%;
+    z-index: 100;
+}
+.active{
+    display: block;
+    animation: showIndex 0.3s;
+    -moz-animation: showIndex  0.3s; /* Firefox */
+    -webkit-animation: showIndex  0.3s; /* Safari and Chrome */
+    -o-animation: showIndex  0.3s; /* Opera */
+}
+
+@keyframes showIndex{
+    0% {opacity: 0; transform: translate(100px, 0) }
+    100% { opacity: 1; transform: translate(0, 0) }
 }
 </style>
