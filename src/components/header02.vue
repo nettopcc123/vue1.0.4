@@ -2,7 +2,7 @@
 <div class="header">
     <div class="heaw">
         <div class="fl"><router-link :to="{ name: 'member'}"><i class="iconfont icon-pros zsm mlin"></i></router-link></div>
-        <div class="fm">重庆时时彩</div>
+        <div class="fm">红单大师</div>
         <span class="menur" @click="ismenushow"><i class="iconfont icon-bell zsm mlin"></i></span>
     </div>
     <div class="menuleft" style="position:restive" v-show="ismenu" v-bind:class="show?'active':''">

@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" v-bind:class="{ houv:ishouv }">
     <!-- <div class="header" v-if="isBanner">大乐透走势规则助手</div> -->
     <vue-header v-if="isHeard"></vue-header>
     <div style="position:restive" v-if="isload">
@@ -10,7 +10,7 @@
         <alert class="showalert"></alert>
         <div class="bg" @click="isalerthid"></div>
     </div>
-    <div class="vrw" id="vrw">
+    <div class="vrw" id="vrw" v-bind:class="{ houv:ishouv }">
         <transition :name="transitionName">
             <router-view class="child-view"></router-view>
         </transition>
@@ -63,7 +63,8 @@ export default {
             isNews: false,
             isBanner: false,
             isHeard: true,
-            isMore01: true
+            isMore01: true,
+            ishouv: false
         }  
     },
 　　watch: {
@@ -77,6 +78,11 @@ export default {
 　　    this.$router.isBack = false;
 　　},
     $route(to,from){
+        if(to.path == '/' || to.path == '/htmlViewSample' || '/framekj'){
+            this.ishouv = true;
+        }else{
+            this.ishouv = false;
+        }
         if(to.path == '/newsMore1'){ //用户中心
             this.isMore01 = true;
         }else{

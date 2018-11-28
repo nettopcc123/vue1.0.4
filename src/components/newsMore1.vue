@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="iftop">
-        <iframe ref="iframe" id="bdIframe" :src="bdTokenUrl" frameborder="0" scrolling="no" width="100%" height="1050px" ></iframe>
+        <iframe ref="iframe" id="bdIframe" :src="bdTokenUrl" frameborder="0" scrolling="no" width="100%" height="2550px" ></iframe>
         </div>
     </div>
 </template>
@@ -28,7 +28,7 @@ import banner from './../components/banner';
             const deviceWidth = document.documentElement.clientWidth;
             const deviceHeight = document.documentElement.clientHeight;
             oIframe.style.width =  '100%'; //数字是页面布局宽度差值
-            oIframe.style.height = '1050px'; //数字是页面布局高度差
+            oIframe.style.height = '2550px'; //数字是页面布局高度差
         },
   components: {
     'vue-banner':banner
